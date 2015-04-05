@@ -40,22 +40,7 @@ def slowReadWebGraph(matSize, filename = os.path.join("data", "web-Google.dat"))
             mat[:, col] = 1 / float(N)
         
     return mat.tocsc()
-    
 
-# count the largest graph node number
-def slowReadBiggestNodesFromGraph(filename = os.path.join("data", "web-Google.dat")):
-    sys.stderr.write("Finding Biggest Node")
-    max_node = 0
-    with open(filename, "r") as f:
-        for idx, line in enumerate(f):
-            data =  line.strip()
-            if not data.startswith("#"):
-                tmp = data.split("\t")
-                max_node = max(int(tmp[0]), int(tmp[1]), max_node)
-            if idx % 1000000 == 0:
-                sys.stderr.write(".")
-                
-    return max_node
 
 def slowPageRank(M_matrix, r_last=0, pTele = 0.2, epsilon = 10**-10, max_iter = sys.maxint):
     sys.stderr.write("Page ranking.")
